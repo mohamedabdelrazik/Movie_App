@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="30dp"
+    android:background="@color/dialogBG">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="40dp"
+        android:gravity="center"
+        android:background="@color/colorWhite">
+        <TextView
+            android:id="@+id/text_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="@string/choose"
+            android:textSize="20sp"
+            android:textColor="@color/orange"/>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/arabic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="عربي"
+                android:paddingStart="25sp"
+                android:textColor="@color/orange"
+                android:textSize="25sp"/>
+            <RadioButton
+                android:id="@+id/english"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English"
+                android:paddingStart="25sp"
+                android:textColor="@color/orange"
+                android:textSize="25sp"/>
+        </RadioGroup>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+        <Button
+            android:id="@+id/ok_dialog_language"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/ok"
+            android:background="@drawable/botton"
+            android:textColor="@color/colorAccent"/>
+        <Button
+            android:id="@+id/cancel_dialog_language"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/cancel"
+            android:background="@drawable/botton"
+            android:textColor="@color/colorAccent"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+
+

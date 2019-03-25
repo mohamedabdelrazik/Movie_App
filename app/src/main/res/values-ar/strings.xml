@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">MovieApp</string>
+
+    <string name="name">أفضل الأفلام</string>
+    <string name="rate">التقييم :</string>
+    <string name="tagLine">الشعار :</string>
+    <string name="genre">نوع الفيلم :</string>
+    <string name="date">يوم الإصدار :</string>
+    <string name="web"><u>صفحة الويب الخاصة بالفيلم</u></string>
+    <string name="topRated">افضل الافلام تقيماً</string>
+    <string name="pop">أشهر الأفلام</string>
+    <string name="upComing">الأفلام القادمة</string>
+    <string name="playing">أفلام تٌعرض</string>
+    <string name="language">اللغة</string>
+    <string name="ok">نعم</string>
+    <string name="cancel">رجوع</string>
+    <string name="exit">هل تريد الخروج ؟</string>
+    <string name="choose">إختر</string>
+    <string name="search">إبحث عن فيلم</string>
+    <string name="onlyEnglish">البحث عن الفيلم باللغة الانجليزية فقط</string>
+    <string name="movie_name">أدخل إسم الفيلم </string>
+    <string name="err_msg_name">إسم الفيلم من فضلك</string>
+    <string name="err_msg_year"> السنة من فضلك</string>
+    <string name="correct_name">اكتب اسم الفيلم صحيحا</string>
+
+    <string name="tab1">بالاسم</string>
+    <string name="tab2">بالعام</string>
+    <string name="year">ادخل السنة  </string>
+
+    <string name="sort">ترتيب حسب :</string>
+    <string name="sort1">معدل التصويت</string>
+    <string name="sort2">الشعبية</string>
+    <string name="sort3">تاريخ الاصدار</string>
+</resources>

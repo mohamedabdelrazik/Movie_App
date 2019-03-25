@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">MovieApp</string>
+
+    <string name="name">Top Movies</string>
+    <string name="rate">Rating :</string>
+    <string name="tagLine">Tagline :</string>
+    <string name="genre">Genre :</string>
+    <string name="date">Release date :</string>
+    <string name="web"><u>Go to web page</u></string>
+
+    <string name="topRated">Top rated movies</string>
+    <string name="pop">Popular movies</string>
+    <string name="upComing">Upcoming movies</string>
+    <string name="playing">Playing movies</string>
+    <string name="language">Language</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="exit">Do you want to out ?</string>
+    <string name="choose">Choose.....</string>
+    <string name="search">Search for movie</string>
+    <string name="onlyEnglish">Search for movie only in English</string>
+    <string name="movie_name">Enter name of movie </string>
+    <string name="err_msg_name">Name of movies pleas</string>
+    <string name="err_msg_year">Year pleas</string>
+    <string name="correct_name">Type the correct movie name</string>
+
+    <string name="tab1">By name</string>
+    <string name="tab2">By year</string>
+    <string name="year">Enter the year </string>
+
+    <string name="sort">Sort by :</string>
+    <string name="sort1">vote average</string>
+    <string name="sort2">popularity</string>
+    <string name="sort3">release date</string>
+
+
+</resources>
