@@ -31,16 +31,16 @@
                 android:id="@+id/ok_dialog"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/ok"
                 android:background="@drawable/botton"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/orange"/>
             <Button
                 android:id="@+id/cancel_dialog"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:text="@string/cancel"
                 android:background="@drawable/botton"
                 android:textColor="@color/colorWhite"/>
