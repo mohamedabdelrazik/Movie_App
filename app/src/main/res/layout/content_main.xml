@@ -53,6 +53,7 @@
             android:id="@+id/rv_movies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorBlack"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:context="com.farag.hamzamohamed.movieapp.activites.MainActivity">
         </android.support.v7.widget.RecyclerView>
