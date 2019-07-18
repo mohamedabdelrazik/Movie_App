@@ -1,4 +1,4 @@
-package com.farag.hamzamohamed.movieapp;
+package com.farag.hamzamohamed.movieapp.Adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

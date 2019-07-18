@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="150dp"
         app:cardBackgroundColor="@color/backCard"
         app:cardCornerRadius="5dp"
         android:layout_marginTop="5dp">
@@ -66,6 +66,10 @@
             android:textColor="@color/orange"
             android:layout_marginStart="8dp" />
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp">
     <TextView
         android:id="@+id/yearOfMovie"
         android:layout_width="wrap_content"
@@ -73,7 +77,18 @@
         android:textColor="@color/colorBlack"
         android:layout_marginStart="8dp"
         android:layout_gravity="start"
-        android:gravity="center_horizontal" />
+        android:layout_centerVertical="true" />
+
+        <ImageView
+            android:id="@+id/addToFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/inc"/>
+    </RelativeLayout>
 
 </LinearLayout>
         </LinearLayout>

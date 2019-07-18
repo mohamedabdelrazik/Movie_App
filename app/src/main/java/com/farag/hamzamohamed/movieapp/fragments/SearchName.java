@@ -18,14 +18,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.farag.hamzamohamed.movieapp.MoviesAdapter;
+import com.farag.hamzamohamed.movieapp.Adapter.MoviesAdapter;
 import com.farag.hamzamohamed.movieapp.R;
 import com.farag.hamzamohamed.movieapp.model.Genre;
 import com.farag.hamzamohamed.movieapp.model.GenreModel;
 import com.farag.hamzamohamed.movieapp.model.Movie;
 import com.farag.hamzamohamed.movieapp.model.MovieResponse;
-import com.farag.hamzamohamed.movieapp.rest.ApiClient;
-import com.farag.hamzamohamed.movieapp.rest.ApiInterface;
+import com.farag.hamzamohamed.movieapp.Network.ApiClient;
+import com.farag.hamzamohamed.movieapp.Network.ApiInterface;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;

@@ -17,8 +17,8 @@ import android.widget.Toast;
 
 import com.farag.hamzamohamed.movieapp.R;
 import com.farag.hamzamohamed.movieapp.model.MovieDetails;
-import com.farag.hamzamohamed.movieapp.rest.ApiClient;
-import com.farag.hamzamohamed.movieapp.rest.ApiInterface;
+import com.farag.hamzamohamed.movieapp.Network.ApiClient;
+import com.farag.hamzamohamed.movieapp.Network.ApiInterface;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -94,7 +94,7 @@ public class MoviesDetails extends AppCompatActivity {
             @Override
             public void onResponse(Call<MovieDetails> call, Response<MovieDetails> response) {
                 if (response.isSuccessful()){
-                    Picasso.with(getApplicationContext())
+                    Picasso.get()
                             .load(response.body().getPosterPathMovie())
                             .resize(300,300)
                             .into(movieImage);

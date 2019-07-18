@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,14 +21,17 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.farag.hamzamohamed.movieapp.MoviesAdapter;
+import com.farag.hamzamohamed.movieapp.Adapter.MoviesAdapter;
+import com.farag.hamzamohamed.movieapp.Listeners.OnItemClickListener;
 import com.farag.hamzamohamed.movieapp.R;
+import com.farag.hamzamohamed.movieapp.RoomDataBase.DataBaseClient;
+import com.farag.hamzamohamed.movieapp.RoomDataBase.Movies;
 import com.farag.hamzamohamed.movieapp.model.Genre;
 import com.farag.hamzamohamed.movieapp.model.GenreModel;
 import com.farag.hamzamohamed.movieapp.model.Movie;
 import com.farag.hamzamohamed.movieapp.model.MovieResponse;
-import com.farag.hamzamohamed.movieapp.rest.ApiClient;
-import com.farag.hamzamohamed.movieapp.rest.ApiInterface;
+import com.farag.hamzamohamed.movieapp.Network.ApiClient;
+import com.farag.hamzamohamed.movieapp.Network.ApiInterface;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -38,7 +42,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnItemClickListener {
 
     public final static String API_KEY = "069522d9d43e38f343e8fc83d04e4a8a";
     private RecyclerView mRecyclerView ;
@@ -53,8 +57,12 @@ public class MainActivity extends AppCompatActivity {
     String lang;
     Dialog dialog;
     List<Genre> genres;
+    List<Movie> movies;
+    List<String> getAll;
     int currentPage = 1 , currentSection ;
     private boolean isFetchingMovies;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         avi = findViewById(R.id.avi);
         loading = findViewById(R.id.loading);
         genres = new ArrayList<>();
+        movies = new ArrayList<>();
     }
 
     private void exeAction(){
@@ -133,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void getMovies(final int page){
         isFetchingMovies = true;
         if (currentSection == 1){
@@ -145,9 +155,18 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
 //                        Log.e("<<<<currentPage",String.valueOf(page));
                         Toast.makeText(MainActivity.this, String.valueOf(page), Toast.LENGTH_SHORT).show();
-                        List<Movie> movies = response.body().getResults();
+                        movies = response.body().getResults();
+//                        for (int x = 0 ; x<movies.size();x++){
+//                            getAll.add(x, String.valueOf(movies.get(x).getId()));
+//                        }
+                        if (movies.isEmpty()) {
+                            movies = response.body().getResults();
+                        }else{
+                            movies.addAll(response.body().getResults());
+                        }
                         if (mAdapter == null){
                             mAdapter = new MoviesAdapter(movies,genres,MainActivity.this);
+                            mAdapter.setOnItemClickListener(MainActivity.this);
                             mRecyclerView.setAdapter(mAdapter);
                         }else {
                             mAdapter.appendMovies(movies);
@@ -176,9 +195,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
 //                        Log.e("<<<<currentPage",String.valueOf(page));
                         Toast.makeText(MainActivity.this, String.valueOf(page), Toast.LENGTH_SHORT).show();
-                        List<Movie> movies = response.body().getResults();
+                        if (movies.isEmpty()) {
+                            movies = response.body().getResults();
+                        }else {
+                            movies.addAll(response.body().getResults());
+                        }
                         if (mAdapter == null){
                             mAdapter = new MoviesAdapter(movies,genres,MainActivity.this);
+                            mAdapter.setOnItemClickListener(MainActivity.this);
                             mRecyclerView.setAdapter(mAdapter);
                         }else {
                             mAdapter.appendMovies(movies);
@@ -206,9 +230,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
 //                        Log.e("<<<<currentPage",String.valueOf(page));
                         Toast.makeText(MainActivity.this, String.valueOf(page), Toast.LENGTH_SHORT).show();
-                        List<Movie> movies = response.body().getResults();
+                        if (movies.isEmpty()) {
+                            movies = response.body().getResults();
+                        }else {
+                            movies.addAll(response.body().getResults());
+                        }
                         if (mAdapter == null){
                             mAdapter = new MoviesAdapter(movies,genres,MainActivity.this);
+                            mAdapter.setOnItemClickListener(MainActivity.this);
                             mRecyclerView.setAdapter(mAdapter);
                         }else {
                             mAdapter.appendMovies(movies);
@@ -238,9 +267,10 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                List<Movie> movies = response.body().getResults();
+                movies = response.body().getResults();
                 mAdapter = new MoviesAdapter(movies,genres,getApplicationContext());
                 mAdapter.notifyDataSetChanged();
+                mAdapter.setOnItemClickListener(MainActivity.this);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setVisibility(View.VISIBLE);
                 loading.hide();
@@ -265,8 +295,9 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                List<Movie> movies = response.body().getResults();
+                movies = response.body().getResults();
                 mAdapter = new MoviesAdapter(movies,genres,getApplicationContext());
+                mAdapter.setOnItemClickListener(MainActivity.this);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setVisibility(View.VISIBLE);
                 loading.hide();
@@ -279,6 +310,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void getUpcoming(final List<Genre> genres){
         currentSection = 3;
         isFetchingMovies = false;
@@ -288,8 +320,9 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                List<Movie> movies = response.body().getResults();
+                movies = response.body().getResults();
                 mAdapter = new MoviesAdapter(movies,genres,getApplicationContext());
+                mAdapter.setOnItemClickListener(MainActivity.this);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setVisibility(View.VISIBLE);
                 loading.hide();
@@ -310,8 +343,9 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                List<Movie> movies = response.body().getResults();
+                movies = response.body().getResults();
                 mAdapter = new MoviesAdapter(movies,genres,getApplicationContext());
+                mAdapter.setOnItemClickListener(MainActivity.this);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setVisibility(View.VISIBLE);
                 loading.hide();
@@ -469,6 +503,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this,SearchForMovies.class));
     }
 
+    public void myFavorites(View view) {
+        drawerLayout.closeDrawer(GravityCompat.START);
+        startActivity(new Intent(MainActivity.this,FavoriteRoomActivity.class));
+    }
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
@@ -476,5 +515,60 @@ public class MainActivity extends AppCompatActivity {
         }else {
             exitDialog();
         }
+    }
+
+    @Override
+    public void onItemClicked(View view, int position) {
+
+        if (view.getId() ==R.id.addToFavorite){
+            saveToDataBase(position);
+        }
+    }
+
+
+    private void saveToDataBase(final int position ){
+        class SaveMovie extends AsyncTask<Void,Void,Void> {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                Movies movie = new Movies();
+                movie.setId(movies.get(position).getId());
+                movie.setReleaseDate(movies.get(position).getReleaseDate());
+                movie.setTitle(movies.get(position).getTitle());
+                movie.setPoster(movies.get(position).getPosterPath());
+                movie.setVoteAverage(String.valueOf(movies.get(position).getVoteAverage()));
+                String name = movie.getTitle();
+                List<Movies> allDataBase = DataBaseClient.getInstance(getApplicationContext()).getMoviesDataBase().daoMovies().getAll();
+                List<String> allTitle = new ArrayList<>();
+
+                for (int x = 0  ; x <allDataBase.size(); x++){ allTitle.add(x,allDataBase.get(x).getTitle()); }
+
+                if (allTitle.contains(name)){
+                   makeToastInAsyncTask(getString(R.string.item_exist));
+                }else {
+                    DataBaseClient.getInstance(getApplicationContext()).getMoviesDataBase().daoMovies().insert(movie);
+                    makeToastInAsyncTask(getString(R.string.save));
+                }
+
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+            }
+        }
+
+        SaveMovie saveMovie = new SaveMovie();
+        saveMovie.execute();
+    }
+
+    void makeToastInAsyncTask(final String message){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

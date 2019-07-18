@@ -1,4 +1,4 @@
-package com.farag.hamzamohamed.movieapp;
+package com.farag.hamzamohamed.movieapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.farag.hamzamohamed.movieapp.R;
 import com.farag.hamzamohamed.movieapp.activites.MoviesDetails;
 import com.farag.hamzamohamed.movieapp.model.Movie;
 import com.squareup.picasso.Picasso;
@@ -56,7 +57,7 @@ public class InfiniteScroll extends RecyclerView.Adapter<InfiniteScroll.MovieVie
 
         holder.movieTitle.setText(movies.get(position).getTitle());
         holder.rating.setText(movies.get(position).getVoteAverage().toString());
-        Picasso.with(context)
+        Picasso.get()
                 .load(movies.get(position).getPosterPath())
                 .placeholder(R.color.backCard)
                 .resize(150,150)

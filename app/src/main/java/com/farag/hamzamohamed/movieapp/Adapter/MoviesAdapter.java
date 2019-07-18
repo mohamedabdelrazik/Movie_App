@@ -1,4 +1,4 @@
-package com.farag.hamzamohamed.movieapp;
+package com.farag.hamzamohamed.movieapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.farag.hamzamohamed.movieapp.Listeners.OnItemClickListener;
+import com.farag.hamzamohamed.movieapp.R;
 import com.farag.hamzamohamed.movieapp.activites.MoviesDetails;
 import com.farag.hamzamohamed.movieapp.model.Genre;
 import com.farag.hamzamohamed.movieapp.model.Movie;
@@ -26,30 +28,31 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
     String gener ;
 
-    private List<Movie> movies;
-    private int rowLayout;
+    private List<Movie> movieslist;
+//    private int rowLayout;
     private Context context;
     private List<Genre> genresList;
+    private OnItemClickListener onItemClickListener;
 
-    public MoviesAdapter( List<Movie> movies , int rowLayout , Context context){
+    public MoviesAdapter( List<Movie> movieslist  , Context context){
 
-        this.movies = movies;
-        this.rowLayout = rowLayout;
+        this.movieslist = movieslist;
+//        this.rowLayout = rowLayout;
         this.context = context;
 
     }
 
     public MoviesAdapter( List<Movie> movies ,List<Genre> genresList , Context context){
 
-        this.movies = movies;
+        this.movieslist = movies;
         this.genresList = genresList;
         this.context = context;
 
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
+    public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView movieTitle , rating , genreMovie , year;
-        ImageView poster;
+        ImageView poster ,addToFavorite ;
 
         public MovieViewHolder(View itemView) {
             super(itemView);
@@ -58,6 +61,27 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
             poster = itemView.findViewById(R.id.poster);
             genreMovie = itemView.findViewById(R.id.genreOfMovie);
             year = itemView.findViewById(R.id.yearOfMovie);
+            addToFavorite = itemView.findViewById(R.id.addToFavorite);
+            poster.setOnClickListener(this);
+            addToFavorite.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+
+            if (onItemClickListener != null) onItemClickListener.onItemClicked(view,getAdapterPosition());
+//            if (view.getId()==R.id.poster){
+//                Intent intent = new Intent(context, MoviesDetails.class);
+//                intent.putExtra("id",movieslist.get(getAdapterPosition()).getId());
+//                intent.putExtra("title",movieslist.get(getAdapterPosition()).getTitle());
+//                intent.putExtra("date",movieslist.get(getAdapterPosition()).getReleaseDate());
+//                intent.putExtra("genre",gener);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                context.startActivity(intent);
+//            }else {
+//                Movie movie = movieslist.get(getAdapterPosition());
+//
+//            }
         }
     }
 
@@ -73,24 +97,24 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     @Override
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
 
-        holder.movieTitle.setText(movies.get(position).getTitle());
-        holder.rating.setText(movies.get(position).getVoteAverage().toString());
-        holder.year.setText(movies.get(position).getReleaseDate().split("-")[0]);
-        holder.genreMovie.setText(getGenersForMovies(movies.get(position).getGenreIds()));
-        gener = getGenersForMovies(movies.get(position).getGenreIds());
-        Picasso.with(context)
-                .load(movies.get(position).getPosterPath())
+        holder.movieTitle.setText(movieslist.get(position).getTitle());
+        holder.rating.setText(movieslist.get(position).getVoteAverage().toString());
+        holder.year.setText(movieslist.get(position).getReleaseDate().split("-")[0]);
+        holder.genreMovie.setText(getGenersForMovies(movieslist.get(position).getGenreIds()));
+        gener = getGenersForMovies(movieslist.get(position).getGenreIds());
+        Picasso.get()
+                .load(movieslist.get(position).getPosterPath())
                 .placeholder(R.color.backCard)
                 .resize(150,150)
                 .into(holder.poster);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.poster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MoviesDetails.class);
-                intent.putExtra("id",movies.get(position).getId());
-                intent.putExtra("title",movies.get(position).getTitle());
-                intent.putExtra("date",movies.get(position).getReleaseDate());
+                intent.putExtra("id",movieslist.get(position).getId());
+                intent.putExtra("title",movieslist.get(position).getTitle());
+                intent.putExtra("date",movieslist.get(position).getReleaseDate());
                 intent.putExtra("genre",gener);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
@@ -100,12 +124,16 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
     @Override
     public int getItemCount() {
-        return movies.size();
+        return movieslist.size();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
 
     public void appendMovies(List<Movie> moviesToAppend){
-            movies.addAll(moviesToAppend);
+        movieslist.addAll(moviesToAppend);
             notifyDataSetChanged();
     }
 
@@ -121,5 +149,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         }
         return TextUtils.join("-",moviesGenre);
     }
+
+
+
 
 }

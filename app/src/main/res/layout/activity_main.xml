@@ -92,6 +92,16 @@
                 android:text="@string/search"
                 android:onClick="searchForMovies"/>
             <Button
+                android:layout_width="105dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/botton"
+                android:textColor="@color/colorWhite"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="false"
+                android:text="@string/fav"
+                android:onClick="myFavorites"/>
+            <Button
                 android:layout_width="80dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"

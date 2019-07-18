@@ -1,4 +1,4 @@
-package com.farag.hamzamohamed.movieapp.rest;
+package com.farag.hamzamohamed.movieapp.Network;
 
 import com.farag.hamzamohamed.movieapp.model.GenreModel;
 import com.farag.hamzamohamed.movieapp.model.MovieDetails;

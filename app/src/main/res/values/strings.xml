@@ -18,11 +18,15 @@
     <string name="exit">Do you want to out ?</string>
     <string name="choose">Choose.....</string>
     <string name="search">Search for movie</string>
+    <string name="fav">Favorites</string>
     <string name="onlyEnglish">Search for movie only in English</string>
     <string name="movie_name">Enter name of movie </string>
     <string name="err_msg_name">Name of movies pleas</string>
     <string name="err_msg_year">Year pleas</string>
     <string name="correct_name">Type the correct movie name</string>
+    <string name="save">Saved</string>
+    <string name="item_exist">Movie already saved</string>
+    <string name="delete">delete</string>
 
     <string name="tab1">By name</string>
     <string name="tab2">By year</string>

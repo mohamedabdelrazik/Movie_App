@@ -1,43 +1,19 @@
 package com.farag.hamzamohamed.movieapp.activites;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Vibrator;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.farag.hamzamohamed.movieapp.R;
-import com.farag.hamzamohamed.movieapp.VPagerAdapter;
+import com.farag.hamzamohamed.movieapp.Adapter.VPagerAdapter;
 import com.farag.hamzamohamed.movieapp.fragments.ChooseSearch;
 import com.farag.hamzamohamed.movieapp.fragments.SearchName;
-import com.farag.hamzamohamed.movieapp.model.Genre;
-import com.farag.hamzamohamed.movieapp.model.GenreModel;
-import com.farag.hamzamohamed.movieapp.model.Movie;
-import com.farag.hamzamohamed.movieapp.model.MovieResponse;
-import com.farag.hamzamohamed.movieapp.rest.ApiClient;
-import com.farag.hamzamohamed.movieapp.rest.ApiInterface;
-import com.wang.avi.AVLoadingIndicatorView;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SearchForMovies extends AppCompatActivity {
 

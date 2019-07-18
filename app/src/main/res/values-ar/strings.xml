@@ -12,6 +12,7 @@
     <string name="upComing">الأفلام القادمة</string>
     <string name="playing">أفلام تٌعرض</string>
     <string name="language">اللغة</string>
+    <string name="fav">المفضلة</string>
     <string name="ok">نعم</string>
     <string name="cancel">رجوع</string>
     <string name="exit">هل تريد الخروج ؟</string>
@@ -22,6 +23,9 @@
     <string name="err_msg_name">إسم الفيلم من فضلك</string>
     <string name="err_msg_year"> السنة من فضلك</string>
     <string name="correct_name">اكتب اسم الفيلم صحيحا</string>
+    <string name="save">تم الحفظ</string>
+    <string name="item_exist">الفيلم محفوظ</string>
+    <string name="delete">مسح</string>
 
     <string name="tab1">بالاسم</string>
     <string name="tab2">بالعام</string>

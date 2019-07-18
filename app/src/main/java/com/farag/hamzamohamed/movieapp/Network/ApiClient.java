@@ -1,4 +1,4 @@
-package com.farag.hamzamohamed.movieapp.rest;
+package com.farag.hamzamohamed.movieapp.Network;
 
 
 import retrofit2.Retrofit;
